@@ -1,0 +1,1561 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0" />
+  <title>내규 - 왕십리역 사규똑똑이</title>
+
+  <!-- 모바일 웹앱 메타 설정 -->
+  <meta name="theme-color" content="#0054A6" />
+  <meta name="apple-mobile-web-app-capable" content="yes" />
+  <meta name="mobile-web-app-capable" content="yes" />
+  <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />
+  <meta name="apple-mobile-web-app-title" content="내규" />
+  <meta name="application-name" content="내규" />
+  <meta name="description" content="한국철도공사 왕십리관리역 직원 전용 근무·운전 내규 실시간 공유망" />
+
+  <!-- 기본 SVG 파비콘 및 Apple Touch Icon (로딩 시 고해상도 PNG/SVG 및 Manifest로 자동 보강됨) -->
+  <link id="favicon-link" rel="icon" type="image/svg+xml" href="data:image/svg+xml;charset=utf-8,%3Csvg%20xmlns%3D'http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg'%20viewBox%3D'0%200%20512%20512'%3E%3Cdefs%3E%3ClinearGradient%20id%3D'g'%20x1%3D'0%25'%20y1%3D'0%25'%20x2%3D'100%25'%20y2%3D'100%25'%3E%3Cstop%20offset%3D'0%25'%20stop-color%3D'%23003B75'%2F%3E%3Cstop%20offset%3D'55%25'%20stop-color%3D'%230054A6'%2F%3E%3Cstop%20offset%3D'100%25'%20stop-color%3D'%2300A0E9'%2F%3E%3C%2FlinearGradient%3E%3C%2Fdefs%3E%3Crect%20width%3D'512'%20height%3D'512'%20rx%3D'112'%20fill%3D'url(%23g)'%2F%3E%3Ctext%20x%3D'256'%20y%3D'318'%20font-family%3D'sans-serif'%20font-size%3D'190'%20font-weight%3D'900'%20fill%3D'%23FFFFFF'%20text-anchor%3D'middle'%3E%EB%82%B4%EA%B7%9C%3C%2Ftext%3E%3C%2Fsvg%3E" />
+  <link id="apple-icon-default" rel="apple-touch-icon" href="data:image/svg+xml;charset=utf-8,%3Csvg%20xmlns%3D'http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg'%20viewBox%3D'0%200%20512%20512'%3E%3Cdefs%3E%3ClinearGradient%20id%3D'g'%20x1%3D'0%25'%20y1%3D'0%25'%20x2%3D'100%25'%20y2%3D'100%25'%3E%3Cstop%20offset%3D'0%25'%20stop-color%3D'%23003B75'%2F%3E%3Cstop%20offset%3D'55%25'%20stop-color%3D'%230054A6'%2F%3E%3Cstop%20offset%3D'100%25'%20stop-color%3D'%2300A0E9'%2F%3E%3C%2FlinearGradient%3E%3C%2Fdefs%3E%3Crect%20width%3D'512'%20height%3D'512'%20rx%3D'112'%20fill%3D'url(%23g)'%2F%3E%3Ctext%20x%3D'256'%20y%3D'318'%20font-family%3D'sans-serif'%20font-size%3D'190'%20font-weight%3D'900'%20fill%3D'%23FFFFFF'%20text-anchor%3D'middle'%3E%EB%82%B4%EA%B7%9C%3C%2Ftext%3E%3C%2Fsvg%3E" />
+
+  <!-- Google Fonts: Noto Sans KR & Inter -->
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700;800;900&family=Noto+Sans+KR:wght@400;500;700;800;900&display=swap" rel="stylesheet" />
+
+  <!-- Tailwind CSS CDN -->
+  <script src="https://cdn.tailwindcss.com"></script>
+
+  <!-- Lucide Icons CDN -->
+  <script src="https://unpkg.com/lucide@latest"></script>
+
+  <style>
+    body {
+      font-family: 'Noto Sans KR', 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+      -webkit-tap-highlight-color: transparent;
+    }
+    .no-scrollbar::-webkit-scrollbar {
+      display: none;
+    }
+    .no-scrollbar {
+      -ms-overflow-style: none;
+      scrollbar-width: none;
+    }
+    @keyframes fadeUp {
+      from { opacity: 0; transform: translateY(10px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+    .animate-fade-up {
+      animation: fadeUp 0.22s ease-out forwards;
+    }
+  </style>
+</head>
+<body class="bg-slate-50 text-slate-900 antialiased selection:bg-sky-200 selection:text-slate-900">
+
+  <!-- ========================================================================
+       토스트 알림 배너
+       ======================================================================== -->
+  <div id="toast-container" class="fixed bottom-20 left-1/2 -translate-x-1/2 z-[70] w-[92%] max-w-md hidden">
+    <div class="bg-slate-900/95 text-white px-4 py-3 rounded-2xl shadow-2xl flex items-center gap-2.5 text-sm font-semibold border border-white/10 animate-fade-up">
+      <i data-lucide="check-circle-2" class="w-5 h-5 text-[#00A0E9] shrink-0"></i>
+      <span id="toast-message" class="leading-snug"></span>
+    </div>
+  </div>
+
+  <!-- ========================================================================
+       화면 (A): 왕십리관리역 직원 전용 인증 화면
+       ======================================================================== -->
+  <section id="auth-screen" class="min-h-screen bg-gradient-to-br from-[#003B75] via-[#0054A6] to-[#00A0E9] flex flex-col justify-between p-4 sm:p-6 text-white">
+    <!-- 상단 소속 헤더 -->
+    <div class="max-w-md w-full mx-auto pt-3 flex items-center justify-between">
+      <span class="px-2.5 py-1 bg-white/15 backdrop-blur-sm rounded-lg text-xs font-extrabold tracking-wider border border-white/25">
+        KORAIL 한국철도공사
+      </span>
+      <span class="text-xs text-sky-100 font-semibold">수도권동부본부</span>
+    </div>
+
+    <!-- 중앙 인증 카드 -->
+    <div class="max-w-md w-full mx-auto my-auto py-6">
+      <div class="bg-white text-slate-800 rounded-3xl shadow-2xl p-6 sm:p-8 border border-white/40">
+        <div class="flex flex-col items-center text-center mb-6">
+          <div class="w-16 h-16 rounded-2xl bg-gradient-to-tr from-[#0054A6] to-[#00A0E9] flex items-center justify-center shadow-lg mb-4">
+            <i data-lucide="train" class="w-9 h-9 text-white"></i>
+          </div>
+          <span class="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-sky-50 text-[#0054A6] text-xs font-extrabold border border-sky-200 mb-2">
+            <i data-lucide="shield-check" class="w-3.5 h-3.5 text-[#00A0E9]"></i>
+            왕십리관리역 직원 전용망
+          </span>
+          <h1 class="text-2xl sm:text-3xl font-black text-slate-900 tracking-tight">
+            왕십리역 <span class="text-[#0054A6]">사규똑똑이</span>
+          </h1>
+          <p class="text-sm text-slate-500 mt-1.5 leading-relaxed">
+            우리역 운전취급·PSD 안전·여객·복무 내규를<br />
+            직원 간 실시간으로 확인하고 업데이트하는 공간입니다.
+          </p>
+        </div>
+
+        <form id="auth-form" class="space-y-4">
+          <div>
+            <label for="passcode-input" class="block text-xs font-extrabold text-slate-600 uppercase tracking-wider mb-1.5">
+              직원 전용 접근 코드
+            </label>
+            <div class="relative">
+              <i data-lucide="lock" class="w-5 h-5 text-slate-400 absolute left-3.5 top-1/2 -translate-y-1/2"></i>
+              <input
+                id="passcode-input"
+                type="password"
+                autocomplete="off"
+                placeholder="역무실 공유 인증코드 입력"
+                class="w-full pl-11 pr-4 py-3.5 bg-slate-50 border-2 border-slate-200 rounded-2xl text-base font-bold text-slate-900 focus:outline-none focus:border-[#0054A6] focus:bg-white transition-all"
+              />
+            </div>
+            <p id="auth-error" class="hidden mt-2 text-xs font-bold text-rose-600 flex items-center gap-1">
+              <i data-lucide="alert-triangle" class="w-3.5 h-3.5 shrink-0"></i>
+              <span>인증 코드가 일치하지 않습니다. 역무실 공유 코드를 확인하세요.</span>
+            </p>
+          </div>
+
+          <button
+            type="submit"
+            class="w-full py-3.5 px-4 bg-gradient-to-r from-[#0054A6] to-[#0077CC] hover:from-[#004488] hover:to-[#0066B3] active:scale-[0.99] text-white font-extrabold rounded-2xl shadow-lg shadow-blue-900/20 transition-all flex items-center justify-center gap-2 text-base"
+          >
+            <span>직원 인증 후 내규 열람하기</span>
+            <i data-lucide="chevron-right" class="w-5 h-5"></i>
+          </button>
+        </form>
+
+        <!-- 하단 테스트 코드 및 홈 화면 아이콘 안내 -->
+        <div class="mt-6 pt-5 border-t border-slate-100 space-y-2.5 text-center">
+          <div class="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-xl bg-slate-100 text-slate-600 text-xs">
+            <i data-lucide="info" class="w-3.5 h-3.5 text-[#0054A6]"></i>
+            <span>
+              직원 인증 코드: <strong class="text-[#0054A6] font-extrabold">korail</strong> 또는
+              <strong class="text-[#0054A6] font-extrabold">1004</strong>
+            </span>
+          </div>
+          <div>
+            <button
+              type="button"
+              onclick="openShortcutModal()"
+              class="inline-flex items-center gap-1.5 text-xs font-extrabold text-[#0054A6] hover:underline py-1"
+            >
+              <i data-lucide="smartphone" class="w-3.5 h-3.5"></i>
+              <span>스마트폰 홈 화면에 '내규' 아이콘 추가 방법 보기</span>
+            </button>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- 하단 안내 -->
+    <div class="max-w-md w-full mx-auto pb-2 text-center text-xs text-sky-100/85 font-medium">
+      외부인 열람 제한 · 왕십리관리역 내부 업무 공유 전용
+    </div>
+  </section>
+
+  <!-- ========================================================================
+       화면 (B): 메인 내규 공유 대시보드
+       ======================================================================== -->
+  <div id="main-dashboard" class="hidden min-h-screen bg-slate-50 text-slate-900 pb-28">
+    <!-- 상단 고정 헤더 -->
+    <header class="sticky top-0 z-30 bg-[#0054A6] text-white shadow-md">
+      <div class="max-w-3xl mx-auto px-4 pt-3.5 pb-3">
+        <div class="flex items-center justify-between gap-2">
+          <div class="flex items-center gap-2.5 min-w-0">
+            <span class="shrink-0 px-2.5 py-1 rounded-xl bg-[#00A0E9] text-white font-black text-xs sm:text-sm tracking-tight shadow-sm">
+              왕십리역
+            </span>
+            <div class="truncate">
+              <div class="flex items-center gap-1.5">
+                <h1 class="text-base sm:text-lg font-black tracking-tight leading-tight truncate">
+                  사규똑똑이
+                </h1>
+                <span id="sync-status-badge" class="inline-flex items-center gap-1 px-2 py-0.5 rounded-full bg-white/15 text-[10px] font-bold text-sky-100">
+                  <span class="w-1.5 h-1.5 rounded-full bg-emerald-400 animate-pulse"></span>
+                  실시간
+                </span>
+              </div>
+              <p class="text-[11px] text-sky-100 truncate">
+                근무·운전·안전 규정 실시간 공유망
+              </p>
+            </div>
+          </div>
+
+          <!-- 우측 액션 버튼 -->
+          <div class="flex items-center gap-1.5 shrink-0">
+            <button
+              type="button"
+              onclick="openShortcutModal()"
+              class="flex items-center gap-1 px-2.5 py-2 rounded-xl bg-[#00A0E9]/35 hover:bg-[#00A0E9]/50 active:bg-[#00A0E9]/60 text-xs font-extrabold text-white border border-white/25 transition-colors"
+              title="홈 화면 '내규' 아이콘 설치 안내"
+            >
+              <i data-lucide="smartphone" class="w-3.5 h-3.5 text-sky-100"></i>
+              <span>내규아이콘</span>
+            </button>
+            <button
+              type="button"
+              onclick="handleShareLink()"
+              class="flex items-center gap-1 px-2.5 py-2 rounded-xl bg-white/15 hover:bg-white/25 active:bg-white/30 text-xs font-extrabold transition-colors"
+              title="직원에게 링크 공유하기"
+            >
+              <i data-lucide="share-2" class="w-3.5 h-3.5 text-sky-200"></i>
+              <span class="hidden sm:inline">직원공유</span>
+            </button>
+            <button
+              type="button"
+              onclick="handleLogout()"
+              class="p-2 rounded-xl bg-white/10 hover:bg-white/20 text-sky-100 transition-colors"
+              title="잠금 화면으로"
+            >
+              <i data-lucide="log-out" class="w-4 h-4"></i>
+            </button>
+          </div>
+        </div>
+
+        <!-- 실시간 키워드 검색창 -->
+        <div class="mt-3 relative">
+          <i data-lucide="search" class="w-4 h-4 text-slate-400 absolute left-3.5 top-1/2 -translate-y-1/2"></i>
+          <input
+            id="search-input"
+            type="text"
+            placeholder="규정 제목, 본문, 태그 검색 (예: PSD, 인상선, 차막이, 교대)"
+            class="w-full pl-10 pr-9 py-2.5 bg-white text-slate-900 placeholder-slate-400 rounded-xl text-sm font-semibold shadow-inner focus:outline-none focus:ring-2 focus:ring-[#00A0E9]"
+          />
+          <button
+            id="clear-search-btn"
+            type="button"
+            onclick="clearSearch()"
+            class="hidden absolute right-2.5 top-1/2 -translate-y-1/2 p-1 text-slate-400 hover:text-slate-600"
+          >
+            <i data-lucide="x" class="w-4 h-4"></i>
+          </button>
+        </div>
+      </div>
+
+      <!-- 카테고리 가로 스크롤 탭 -->
+      <div class="bg-[#00468B] border-t border-white/10">
+        <div id="category-tabs" class="max-w-3xl mx-auto px-3 py-2 flex items-center gap-1.5 overflow-x-auto no-scrollbar">
+          <!-- JS로 렌더링 -->
+        </div>
+      </div>
+    </header>
+
+    <!-- 메인 콘텐츠 영역 -->
+    <main class="max-w-3xl mx-auto px-4 pt-4 space-y-5">
+      <!-- 1. 필독 및 최신 개정 하이라이트 배너 -->
+      <section id="featured-section">
+        <div class="flex items-center justify-between mb-2">
+          <h2 class="text-xs font-extrabold text-[#0054A6] uppercase tracking-wider flex items-center gap-1.5">
+            <i data-lucide="sparkles" class="w-4 h-4 text-[#00A0E9]"></i>
+            필독 및 최신 개정 핵심 안내
+          </h2>
+          <span class="text-[11px] text-slate-400 font-semibold">터치하여 즉시 열람</span>
+        </div>
+        <div id="featured-grid" class="grid grid-cols-1 sm:grid-cols-2 gap-2.5">
+          <!-- JS로 렌더링 -->
+        </div>
+      </section>
+
+      <!-- 2. 규정 목록 헤더 및 리스트 -->
+      <section>
+        <div class="flex items-center justify-between mb-2.5">
+          <div class="flex items-center gap-2">
+            <h2 id="list-heading" class="text-sm font-extrabold text-slate-800">
+              전체 내규·사규 목록
+            </h2>
+            <span id="rules-count-badge" class="px-2 py-0.5 rounded-full bg-[#0054A6]/10 text-[#0054A6] text-xs font-extrabold">
+              0건
+            </span>
+          </div>
+          <button
+            id="reset-search-link"
+            type="button"
+            onclick="clearSearch()"
+            class="hidden text-xs text-[#0054A6] font-extrabold hover:underline"
+          >
+            검색 초기화
+          </button>
+        </div>
+
+        <!-- 로딩 / 빈 상태 / 규정 카드 목록 -->
+        <div id="rules-list-container" class="space-y-3">
+          <div class="bg-white rounded-2xl p-10 text-center border border-slate-200 shadow-sm">
+            <div class="w-8 h-8 border-4 border-[#0054A6] border-t-transparent rounded-full animate-spin mx-auto mb-3"></div>
+            <p class="text-sm font-bold text-slate-600">왕십리역 최신 규정을 불러오고 있습니다...</p>
+          </div>
+        </div>
+      </section>
+    </main>
+
+    <!-- 우측 하단 플로팅 액션 버튼 (새 규정 등록) -->
+    <div class="fixed bottom-5 right-4 sm:right-6 z-30">
+      <button
+        type="button"
+        onclick="openCreateModal()"
+        class="flex items-center gap-2 px-4 py-3.5 rounded-full bg-gradient-to-r from-[#0054A6] to-[#00A0E9] hover:from-[#004488] hover:to-[#0088CC] text-white font-extrabold text-sm shadow-xl shadow-blue-900/30 active:scale-95 transition-all"
+      >
+        <i data-lucide="plus" class="w-5 h-5"></i>
+        <span>새 규정 등록</span>
+      </button>
+    </div>
+  </div>
+
+  <!-- ========================================================================
+       모달 1: 규정 상세 보기 모달 (큰글씨 모드 & 핵심 요약 박스 포함)
+       ======================================================================== -->
+  <div id="detail-modal" class="hidden fixed inset-0 z-50 bg-slate-900/60 backdrop-blur-xs flex items-end sm:items-center justify-center p-0 sm:p-4" onclick="closeDetailModal()">
+    <div class="bg-white w-full max-w-2xl max-h-[92vh] rounded-t-3xl sm:rounded-3xl shadow-2xl flex flex-col overflow-hidden animate-fade-up" onclick="event.stopPropagation()">
+      <!-- 상단 바 -->
+      <div class="px-5 py-4 bg-[#0054A6] text-white flex items-center justify-between gap-2 shrink-0">
+        <div class="flex items-center gap-2 min-w-0">
+          <span id="detail-importance" class="px-2 py-0.5 rounded-md text-xs font-extrabold bg-[#00A0E9] text-white">필독</span>
+          <span id="detail-category" class="text-xs sm:text-sm font-bold text-sky-100 truncate">운전·로컬취급</span>
+        </div>
+
+        <div class="flex items-center gap-1.5 shrink-0">
+          <button
+            id="toggle-large-text-btn"
+            type="button"
+            onclick="toggleLargeText()"
+            class="flex items-center gap-1 px-2.5 py-1.5 rounded-xl text-xs font-extrabold bg-white/15 hover:bg-white/25 text-white transition-colors"
+          >
+            <i data-lucide="type" class="w-3.5 h-3.5"></i>
+            <span id="large-text-label">큰글씨</span>
+          </button>
+          <button
+            type="button"
+            onclick="closeDetailModal()"
+            class="p-1.5 rounded-xl bg-white/10 hover:bg-white/20 text-white"
+          >
+            <i data-lucide="x" class="w-5 h-5"></i>
+          </button>
+        </div>
+      </div>
+
+      <!-- 본문 스크롤 영역 -->
+      <div class="p-5 sm:p-6 overflow-y-auto space-y-5 flex-1">
+        <div>
+          <h2 id="detail-title" class="text-lg sm:text-xl font-black text-slate-900 leading-snug"></h2>
+          <div class="mt-2 flex flex-wrap items-center gap-3 text-xs text-slate-500">
+            <span class="flex items-center gap-1 font-bold text-[#0054A6]">
+              <i data-lucide="calendar" class="w-3.5 h-3.5"></i>
+              <span id="detail-date"></span>
+            </span>
+            <span id="detail-author"></span>
+          </div>
+        </div>
+
+        <!-- 핵심 요약 박스 -->
+        <div class="bg-sky-50 border-l-4 border-[#0054A6] rounded-r-2xl p-4">
+          <div class="text-xs font-extrabold text-[#0054A6] uppercase tracking-wider mb-1 flex items-center gap-1">
+            <i data-lucide="info" class="w-3.5 h-3.5"></i>
+            핵심 요약 (한눈에 보기)
+          </div>
+          <p id="detail-summary" class="text-sm font-bold text-slate-800 leading-relaxed"></p>
+        </div>
+
+        <!-- 상세 본문 -->
+        <div class="space-y-2">
+          <div class="text-xs font-extrabold text-slate-400 uppercase tracking-wider">
+            상세 규정 및 취급 절차
+          </div>
+          <div id="detail-content" class="text-sm sm:text-base leading-relaxed text-slate-800 whitespace-pre-line bg-slate-50 p-4 rounded-2xl border border-slate-200/80"></div>
+        </div>
+
+        <!-- 태그 목록 -->
+        <div id="detail-tags" class="flex flex-wrap items-center gap-1.5 pt-1"></div>
+      </div>
+
+      <!-- 하단 액션 바 -->
+      <div class="px-5 py-3.5 bg-slate-50 border-t border-slate-200 flex items-center justify-between gap-2 shrink-0">
+        <div class="flex items-center gap-2">
+          <button
+            type="button"
+            onclick="openEditFromDetail()"
+            class="flex items-center gap-1.5 px-3.5 py-2.5 rounded-xl bg-white border border-slate-300 hover:bg-slate-100 text-slate-700 text-xs font-extrabold transition-colors"
+          >
+            <i data-lucide="edit-3" class="w-3.5 h-3.5 text-[#0054A6]"></i>
+            <span>규정 수정</span>
+          </button>
+          <button
+            type="button"
+            onclick="openDeleteFromDetail()"
+            class="flex items-center gap-1.5 px-3.5 py-2.5 rounded-xl bg-white border border-rose-200 hover:bg-rose-50 text-rose-600 text-xs font-extrabold transition-colors"
+          >
+            <i data-lucide="trash-2" class="w-3.5 h-3.5"></i>
+            <span>삭제</span>
+          </button>
+        </div>
+        <button
+          type="button"
+          onclick="closeDetailModal()"
+          class="px-5 py-2.5 rounded-xl bg-[#0054A6] hover:bg-[#004488] text-white text-xs font-extrabold transition-colors"
+        >
+          확인 닫기
+        </button>
+      </div>
+    </div>
+  </div>
+
+  <!-- ========================================================================
+       모달 2: 신규/개정 규정 등록 및 수정 폼 모달
+       ======================================================================== -->
+  <div id="form-modal" class="hidden fixed inset-0 z-50 bg-slate-900/60 backdrop-blur-xs flex items-end sm:items-center justify-center p-0 sm:p-4" onclick="closeFormModal()">
+    <div class="bg-white w-full max-w-xl max-h-[92vh] rounded-t-3xl sm:rounded-3xl shadow-2xl flex flex-col overflow-hidden animate-fade-up" onclick="event.stopPropagation()">
+      <div class="px-5 py-4 bg-[#0054A6] text-white flex items-center justify-between shrink-0">
+        <h2 id="form-modal-title" class="text-base sm:text-lg font-extrabold flex items-center gap-2">
+          <i data-lucide="edit-3" class="w-5 h-5 text-[#00A0E9]"></i>
+          <span>새 규정 / 개정 내규 등록</span>
+        </h2>
+        <button type="button" onclick="closeFormModal()" class="p-1.5 rounded-xl bg-white/10 hover:bg-white/20 text-white">
+          <i data-lucide="x" class="w-5 h-5"></i>
+        </button>
+      </div>
+
+      <form id="rule-form" class="p-5 overflow-y-auto space-y-4 flex-1">
+        <div class="grid grid-cols-1 sm:grid-cols-2 gap-3">
+          <div>
+            <label for="form-category" class="block text-xs font-extrabold text-slate-700 mb-1">카테고리 분류 *</label>
+            <select id="form-category" class="w-full px-3 py-2.5 bg-slate-50 border border-slate-300 rounded-xl text-sm font-bold text-slate-900 focus:outline-none focus:border-[#0054A6]">
+              <option value="운전·로컬취급">운전·로컬취급</option>
+              <option value="안전·소방(PSD/시설)">안전·소방(PSD/시설)</option>
+              <option value="여객·역무">여객·역무</option>
+              <option value="복무·근무교대">복무·근무교대</option>
+              <option value="신규·개정공지">신규·개정공지</option>
+            </select>
+          </div>
+          <div>
+            <label for="form-importance" class="block text-xs font-extrabold text-slate-700 mb-1">중요도 표기 *</label>
+            <select id="form-importance" class="w-full px-3 py-2.5 bg-slate-50 border border-slate-300 rounded-xl text-sm font-bold text-slate-900 focus:outline-none focus:border-[#0054A6]">
+              <option value="필독">🔴 필독 (상단 고정 노출)</option>
+              <option value="개정">🔵 개정 (신규/변경 안내)</option>
+              <option value="일반">⚪ 일반 (상시 내규)</option>
+            </select>
+          </div>
+        </div>
+
+        <div>
+          <label for="form-title" class="block text-xs font-extrabold text-slate-700 mb-1">규정 제목 *</label>
+          <input id="form-title" type="text" required placeholder="예: [운전취급] 왕십리역 로컬 관제 전환 시 주의사항" class="w-full px-3.5 py-2.5 bg-slate-50 border border-slate-300 rounded-xl text-sm font-bold text-slate-900 focus:outline-none focus:border-[#0054A6]" />
+        </div>
+
+        <div class="grid grid-cols-1 sm:grid-cols-2 gap-3">
+          <div>
+            <label for="form-date" class="block text-xs font-extrabold text-slate-700 mb-1">시행일 / 개정일 *</label>
+            <input id="form-date" type="date" required class="w-full px-3 py-2.5 bg-slate-50 border border-slate-300 rounded-xl text-sm font-bold text-slate-900 focus:outline-none focus:border-[#0054A6]" />
+          </div>
+          <div>
+            <label for="form-author" class="block text-xs font-extrabold text-slate-700 mb-1">작성자 / 담당파트</label>
+            <input id="form-author" type="text" placeholder="예: 운전팀, 안전담당, 역무실" class="w-full px-3 py-2.5 bg-slate-50 border border-slate-300 rounded-xl text-sm font-bold text-slate-900 focus:outline-none focus:border-[#0054A6]" />
+          </div>
+        </div>
+
+        <div>
+          <label for="form-summary" class="block text-xs font-extrabold text-slate-700 mb-1">핵심 요약 (목록 및 상단 요약박스에 표시)</label>
+          <input id="form-summary" type="text" placeholder="직원들이 빠르게 파악할 수 있도록 1~2줄로 요약해주세요." class="w-full px-3.5 py-2.5 bg-slate-50 border border-slate-300 rounded-xl text-sm text-slate-900 focus:outline-none focus:border-[#0054A6]" />
+        </div>
+
+        <div>
+          <label for="form-content" class="block text-xs font-extrabold text-slate-700 mb-1">상세 규정 및 매뉴얼 본문 *</label>
+          <textarea id="form-content" rows="6" required placeholder="구체적인 취급 절차, 주의사항, 비상 연락망 등을 상세히 입력하세요." class="w-full px-3.5 py-2.5 bg-slate-50 border border-slate-300 rounded-xl text-sm text-slate-900 leading-relaxed focus:outline-none focus:border-[#0054A6]"></textarea>
+        </div>
+
+        <div>
+          <label for="form-tags" class="block text-xs font-extrabold text-slate-700 mb-1">검색 키워드 태그 (쉼표로 구분)</label>
+          <input id="form-tags" type="text" placeholder="예: 운전취급, PSD, 인상선, 여객안내, 소방안전" class="w-full px-3.5 py-2.5 bg-slate-50 border border-slate-300 rounded-xl text-sm text-slate-900 focus:outline-none focus:border-[#0054A6]" />
+        </div>
+
+        <div class="pt-2 flex items-center justify-end gap-2">
+          <button type="button" onclick="closeFormModal()" class="px-4 py-2.5 rounded-xl bg-slate-100 hover:bg-slate-200 text-slate-700 text-sm font-extrabold transition-colors">
+            취소
+          </button>
+          <button id="form-submit-btn" type="submit" class="px-6 py-2.5 rounded-xl bg-[#0054A6] hover:bg-[#004488] text-white text-sm font-extrabold shadow-md transition-colors">
+            전체 직원에게 등록·공유
+          </button>
+        </div>
+      </form>
+    </div>
+  </div>
+
+  <!-- ========================================================================
+       모달 3: 규정 삭제 확인 커스텀 모달
+       ======================================================================== -->
+  <div id="delete-modal" class="hidden fixed inset-0 z-[60] bg-slate-900/60 backdrop-blur-xs flex items-center justify-center p-4" onclick="closeDeleteModal()">
+    <div class="bg-white max-w-sm w-full rounded-3xl p-6 shadow-2xl text-center animate-fade-up" onclick="event.stopPropagation()">
+      <div class="w-12 h-12 rounded-full bg-rose-100 text-rose-600 flex items-center justify-center mx-auto mb-3">
+        <i data-lucide="trash-2" class="w-6 h-6"></i>
+      </div>
+      <h3 class="text-lg font-black text-slate-900">규정을 삭제하시겠습니까?</h3>
+      <p class="text-xs sm:text-sm text-slate-500 mt-1.5 leading-relaxed">
+        삭제된 규정은 왕십리역 전체 직원 화면에서 즉시 제거되며 복구할 수 없습니다.
+      </p>
+      <div class="mt-5 grid grid-cols-2 gap-2.5">
+        <button type="button" onclick="closeDeleteModal()" class="py-2.5 rounded-xl bg-slate-100 hover:bg-slate-200 text-slate-700 text-sm font-extrabold">
+          취소
+        </button>
+        <button type="button" onclick="confirmDeleteRule()" class="py-2.5 rounded-xl bg-rose-600 hover:bg-rose-700 text-white text-sm font-extrabold">
+          삭제하기
+        </button>
+      </div>
+    </div>
+  </div>
+
+  <!-- ========================================================================
+       모달 4: 스마트폰 홈 화면 '내규' 아이콘 설치 안내 및 다운로드 모달
+       ======================================================================== -->
+  <div id="shortcut-modal" class="hidden fixed inset-0 z-[60] bg-slate-900/60 backdrop-blur-xs flex items-end sm:items-center justify-center p-0 sm:p-4" onclick="closeShortcutModal()">
+    <div class="bg-white w-full max-w-lg max-h-[92vh] rounded-t-3xl sm:rounded-3xl shadow-2xl flex flex-col overflow-hidden animate-fade-up" onclick="event.stopPropagation()">
+      <div class="px-5 py-4 bg-[#0054A6] text-white flex items-center justify-between shrink-0">
+        <h2 class="text-base sm:text-lg font-extrabold flex items-center gap-2">
+          <i data-lucide="smartphone" class="w-5 h-5 text-[#00A0E9]"></i>
+          <span>홈 화면 '내규' 아이콘 설치 안내</span>
+        </h2>
+        <button type="button" onclick="closeShortcutModal()" class="p-1.5 rounded-xl bg-white/10 hover:bg-white/20 text-white">
+          <i data-lucide="x" class="w-5 h-5"></i>
+        </button>
+      </div>
+
+      <div class="p-5 overflow-y-auto space-y-5 flex-1">
+        <!-- 아이콘 미리보기 & 다운로드 -->
+        <div class="bg-slate-50 border border-slate-200 rounded-2xl p-4 flex flex-col sm:flex-row items-center gap-4">
+          <div class="flex flex-col items-center shrink-0">
+            <img id="icon-preview-img" alt="내규 전용 앱 아이콘" class="w-24 h-24 rounded-3xl shadow-lg border-2 border-white bg-[#0054A6]" />
+            <span class="mt-1.5 text-xs font-black text-slate-800">내규</span>
+          </div>
+
+          <div class="flex-1 text-center sm:text-left space-y-2">
+            <p class="text-xs font-extrabold text-[#0054A6]">
+              코레일 블루 '내규' 전용 아이콘 적용 완료
+            </p>
+            <p class="text-xs text-slate-600 leading-relaxed">
+              GitHub Pages 주소로 접속해 브라우저에서 홈 화면에 추가하면 바탕화면에 파란색 <strong>'내규'</strong> 아이콘이 자동 생성됩니다.
+            </p>
+            <button
+              type="button"
+              onclick="downloadNaegyuIcon()"
+              class="inline-flex items-center gap-1.5 px-3.5 py-2 rounded-xl bg-[#0054A6] hover:bg-[#004488] text-white text-xs font-extrabold shadow-sm transition-colors"
+            >
+              <i data-lucide="download" class="w-3.5 h-3.5"></i>
+              <span>'내규' 아이콘 PNG 저장</span>
+            </button>
+          </div>
+        </div>
+
+        <!-- 기기별 안내 탭 -->
+        <div>
+          <div class="grid grid-cols-2 gap-2 bg-slate-100 p-1 rounded-xl mb-3">
+            <button
+              id="tab-android"
+              type="button"
+              onclick="switchShortcutTab('android')"
+              class="py-2 rounded-lg text-xs font-extrabold bg-white text-[#0054A6] shadow-xs transition-all"
+            >
+              갤럭시 / 안드로이드
+            </button>
+            <button
+              id="tab-ios"
+              type="button"
+              onclick="switchShortcutTab('ios')"
+              class="py-2 rounded-lg text-xs font-extrabold text-slate-600 transition-all"
+            >
+              iPhone (Safari)
+            </button>
+          </div>
+
+          <!-- 안드로이드 안내 -->
+          <ol id="guide-android" class="space-y-2.5 text-xs sm:text-sm text-slate-700 bg-sky-50/70 border border-sky-100 rounded-2xl p-4">
+            <li class="flex gap-2.5">
+              <span class="w-5 h-5 rounded-full bg-[#0054A6] text-white text-xs font-extrabold flex items-center justify-center shrink-0 mt-0.5">1</span>
+              <span>삼성 인터넷 또는 Chrome 우측 상단(또는 하단)의 <strong>메뉴(≡ 또는 ⋮)</strong>를 누릅니다.</span>
+            </li>
+            <li class="flex gap-2.5">
+              <span class="w-5 h-5 rounded-full bg-[#0054A6] text-white text-xs font-extrabold flex items-center justify-center shrink-0 mt-0.5">2</span>
+              <span><strong>'현재 페이지 추가' → '홈 화면'</strong>(또는 <strong>'홈 화면에 추가'</strong>)을 선택합니다.</span>
+            </li>
+            <li class="flex gap-2.5">
+              <span class="w-5 h-5 rounded-full bg-[#0054A6] text-white text-xs font-extrabold flex items-center justify-center shrink-0 mt-0.5">3</span>
+              <span>이름을 <strong>'내규'</strong>로 확인한 뒤 추가하면 바탕화면에 <strong>내규</strong> 아이콘이 생성됩니다.</span>
+            </li>
+          </ol>
+
+          <!-- iOS 안내 -->
+          <ol id="guide-ios" class="hidden space-y-2.5 text-xs sm:text-sm text-slate-700 bg-sky-50/70 border border-sky-100 rounded-2xl p-4">
+            <li class="flex gap-2.5">
+              <span class="w-5 h-5 rounded-full bg-[#0054A6] text-white text-xs font-extrabold flex items-center justify-center shrink-0 mt-0.5">1</span>
+              <span>iPhone의 <strong>Safari</strong> 브라우저 하단 중앙 <strong>공유 버튼(□↑)</strong>을 탭합니다.</span>
+            </li>
+            <li class="flex gap-2.5">
+              <span class="w-5 h-5 rounded-full bg-[#0054A6] text-white text-xs font-extrabold flex items-center justify-center shrink-0 mt-0.5">2</span>
+              <span>메뉴를 아래로 내려 <strong>'홈 화면에 추가'</strong>를 선택합니다.</span>
+            </li>
+            <li class="flex gap-2.5">
+              <span class="w-5 h-5 rounded-full bg-[#0054A6] text-white text-xs font-extrabold flex items-center justify-center shrink-0 mt-0.5">3</span>
+              <span>이름이 <strong>'내규'</strong>로 표시되는지 확인하고 우측 상단 <strong>'추가'</strong>를 누릅니다.</span>
+            </li>
+          </ol>
+        </div>
+      </div>
+
+      <div class="px-5 py-3.5 bg-slate-50 border-t border-slate-200 flex justify-end shrink-0">
+        <button type="button" onclick="closeShortcutModal()" class="px-5 py-2.5 rounded-xl bg-[#0054A6] hover:bg-[#004488] text-white text-xs font-extrabold transition-colors">
+          확인
+        </button>
+      </div>
+    </div>
+  </div>
+
+  <!-- ========================================================================
+       애플리케이션 로직 및 Firebase Firestore 실시간 연동 스크립트
+       ======================================================================== -->
+  <script type="module">
+    import { initializeApp } from "https://www.gstatic.com/firebasejs/11.6.1/firebase-app.js";
+    import {
+      getAuth,
+      signInAnonymously,
+      signInWithCustomToken,
+      onAuthStateChanged
+    } from "https://www.gstatic.com/firebasejs/11.6.1/firebase-auth.js";
+    import {
+      getFirestore,
+      collection,
+      doc,
+      addDoc,
+      updateDoc,
+      deleteDoc,
+      onSnapshot
+    } from "https://www.gstatic.com/firebasejs/11.6.1/firebase-firestore.js";
+
+    // ------------------------------------------------------------------------
+    // 1. Firebase 초기화 및 설정
+    // (GitHub Pages 단독 배포 시 아래 firebaseConfig에 본인의 Firebase 웹앱 설정값을 넣으면
+    //  모든 기기 간 실시간 클라우드 동기화가 작동하며, 미설정 시에도 내장 모드로 즉시 동작합니다.)
+    // ------------------------------------------------------------------------
+    const DEFAULT_FIREBASE_CONFIG = {
+      apiKey: "",
+      authDomain: "",
+      projectId: ""
+    };
+
+    const firebaseConfig = typeof __firebase_config !== "undefined"
+      ? JSON.parse(__firebase_config)
+      : DEFAULT_FIREBASE_CONFIG;
+
+    const appId = typeof __app_id !== "undefined" ? __app_id : "wangsimni-station-rules";
+    const isFirebaseConfigured = Boolean(firebaseConfig && firebaseConfig.apiKey && firebaseConfig.projectId);
+
+    let auth = null;
+    let db = null;
+    if (isFirebaseConfigured) {
+      const app = initializeApp(firebaseConfig);
+      auth = getAuth(app);
+      db = getFirestore(app);
+    }
+
+    // ------------------------------------------------------------------------
+    // 2. 왕십리관리역 실무 기본 내규 데이터 (6건)
+    // ------------------------------------------------------------------------
+    const INITIAL_SAMPLES = [
+      {
+        id: "sample-1",
+        category: "운전·로컬취급",
+        title: "왕십리역 로컬 관제 및 인상선(#1 차막이 등) 입환 취급 주의사항",
+        effectiveDate: "2026-11-01",
+        importance: "필독",
+        tags: ["운전취급", "인상선", "로컬관제", "차막이", "입환"],
+        summary: "왕십리역 구내 인상선 진입 및 입환 작업 시 신호 현시 확인, 진로 개통 상태 육안 확인 및 차막이 전방 정지위치 엄수 지침입니다.",
+        content: `1. 목적\n왕십리관리역 구내 운전취급 및 인상선(#1 차막이 방면 등) 입환 작업 시 안전사고 예방과 정시운전 확보를 목적으로 합니다.\n\n2. 주요 취급 수칙\n① 로컬 관제 전환 시 운전취급자는 로컬반 제어표시등 및 진로 개통 상태를 반드시 육안으로 재확인합니다.\n② 인상선 진입 열차 및 입환 차량은 차막이 전방 안전거리를 충분히 확보하여 단계별 감속 운행하도록 무선 교신을 철저히 시행합니다.\n③ 입환 전호 시행 시 기관사와 운전취급자 간 복창 확인(전호 위치, 정지 목표 지점, 진로 번호)을 생략해서는 안 됩니다.\n\n3. 이례사항 발생 시 조치\n궤도회로 점유 불량 또는 선로전환기 불일치 현상 발생 시 즉시 열차를 정지시키고 관제 및 신호제어사업소에 통보 후 수동 취급 절차를 따릅니다.`,
+        author: "운전팀장"
+      },
+      {
+        id: "sample-2",
+        category: "안전·소방(PSD/시설)",
+        title: "승강장 안전문(PSD) 장애 발생 시 초동조치 및 수동개폐 매뉴얼",
+        effectiveDate: "2026-10-15",
+        importance: "필독",
+        tags: ["PSD", "승강장안전문", "장애조치", "수동개폐", "안전"],
+        summary: "PSD 개별 도어 미개방·미폐쇄 및 제어반 이상 알람 발생 시 승강장 안전요원 및 역무원의 단계별 수동 취급 및 열차 안전 확보 절차입니다.",
+        content: `1. 장애 인지 및 초동조치\n① PSD 종합제어반 경보 울림 또는 승강장 내 개별 도어 이상 점멸 확인 시 즉시 해당 승강장으로 출동합니다.\n② 열차 진출입에 지장이 우려되는 경우 즉시 열차 정지 수배(무선교신 및 비상정지버튼)를 최우선으로 시행합니다.\n\n2. 수동 개폐 취급 요령\n① 개별 도어 고장 시 승강장 측 비상키를 이용하여 수동 개방 후 여객 승하차를 유도합니다.\n② 열차 출발 전 반드시 수동으로 도어를 완전 폐쇄하고, 잠금 상태(쇄정 확인)를 육안으로 점검한 뒤 기관사에게 출발 전호를 보냅니다.\n\n3. 사후 조치\n고장 도어에 '사용중지' 표지판을 부착하고, PSD 유지보수팀에 장애 접수 및 안전요원을 고정 배치합니다.`,
+        author: "안전담당"
+      },
+      {
+        id: "sample-3",
+        category: "여객·역무",
+        title: "KTX·SRT 연계 및 다중 노선(2·5호선·수인분당·경의중앙) 환승 여객 안내 요령",
+        effectiveDate: "2026-11-10",
+        importance: "개정",
+        tags: ["여객안내", "환승", "KTX연계", "SRT", "민원응대"],
+        summary: "왕십리역 다중 환승 통로 혼잡 시간대 여객 동선 분리 안내 및 고속열차 연계 승차권 발권·환승 문의 표준 응대 가이드입니다.",
+        content: `1. 다중 환승 노선 안내 핵심\n왕십리역은 2호선, 5호선, 수인분당선, 경의중앙선 및 ITX-청춘이 교차하는 주요 거점역으로, 출퇴근 시간대 환승 동선 안내가 매우 중요합니다.\n\n2. KTX·SRT 연계 여객 응대\n① 수서역(SRT) 및 서울·용산·청량리역(KTX) 방면 최단 환승 경로를 명확히 안내합니다.\n  - 청량리역 KTX 이용객: 경의중앙선(용문·덕소 방면) 1정거장 이동 안내\n  - 수서역 SRT 이용객: 수인분당선(인천·죽전 방면) 직통 이동 안내\n② 연계 승차권 반환 및 변경 문의 시 코레일톡 앱 활용법 또는 맞이방 창구 안내를 친절히 시행합니다.\n\n3. 교통약자 배려\n휠체어 및 유모차 이용 고객 문의 시 엘리베이터 위치 및 환승 게이트 호출벨 이용 방법을 상세히 안내합니다.`,
+        author: "여객팀"
+      },
+      {
+        id: "sample-4",
+        category: "복무·근무교대",
+        title: "근무교대 인계인수 철저 및 대체근무·연차 신청 절차 안내",
+        effectiveDate: "2026-09-20",
+        importance: "일반",
+        tags: ["복무", "근무교대", "인계인수", "대체근무", "근태"],
+        summary: "교대근무 시 15분 전 출근 및 업무일지·열쇠·무전기 인계인수 필수 확인 항목과 대체근무 사전 승인 절차입니다.",
+        content: `1. 근무교대 및 인계인수 수칙\n① 교대 근무자는 근무 시작 15분 전까지 출근하여 복장 및 음주 측정 등 근무 준비를 완료합니다.\n② 인계인수 시 아래 항목을 반드시 대면 확인합니다.\n  - 당일 운전취급 특이사항 및 선로작업(차단작업) 예정 현황\n  - PSD 및 역사 주요 설비 장애·점검 내역\n  - 무전기, 비상열쇠, 휴대용 단말기 등 지급 비품 수량 및 작동 상태\n\n2. 대체근무 및 휴가 신청 절차\n① 개인 사정으로 인한 근무 변경(대체근무)은 최소 근무일 3일 전까지 상호 합의 후 역장(또는 팀장) 결재를 득해야 합니다.\n② 긴급 병가 등 불가피한 사유 발생 시 즉시 역무실 유선 연락을 통해 대체 인력 투입에 차질이 없도록 합니다.`,
+        author: "관리역 서무"
+      },
+      {
+        id: "sample-5",
+        category: "안전·소방(PSD/시설)",
+        title: "역사 내 소방시설 점검 및 비상대피 유도 담당자 임무 분장",
+        effectiveDate: "2026-10-28",
+        importance: "필독",
+        tags: ["소방안전", "비상대피", "소화전", "방화셔터", "초동진화"],
+        summary: "지하 역사 화재 및 연기 발생 시 자위소방대 임무 분장, 제연설비 가동 확인 및 승객 지상 대피 유도 동선입니다.",
+        content: `1. 화재 수신반 경보 시 초기 대응\n① 역무실 화재수신반 경보 발생 시 경보 구역을 즉시 확인하고, 현장 근무자는 소화기를 지참하여 발화 지점을 확인합니다.\n② 실제 화재 또는 연기 확인 시 즉시 119 신고, 관제 보고, 비상방송 송출을 동시에 진행합니다.\n\n2. 자위소방대 임무 분장\n① 지휘반(역장/당직팀장): 전체 상황 통제 및 119 소방대 현장 안내\n② 소화반(역무실 근무자): 옥내소화전 및 소화기 활용 초기 진화\n③ 피난유도반(승강장·맞이방 근무자): 비상게이트 개방(비상개방 스위치 작동) 및 가장 가까운 지상 출구로 여객 유도\n\n3. 방화셔터 및 제연설비 확인\n방화셔터 하강 구역 내 잔류 승객이 없는지 확인하며, 제연설비 정상 가동 여부를 점검합니다.`,
+        author: "소방안전관리자"
+      },
+      {
+        id: "sample-6",
+        category: "신규·개정공지",
+        title: "[2026년 11월 개정] 동절기 한파 대비 선로전환기 히팅장치 및 승강장 결빙 예방 지침",
+        effectiveDate: "2026-11-18",
+        importance: "개정",
+        tags: ["신규공지", "동절기", "선로전환기", "결빙예방", "시설점검"],
+        summary: "동절기 기온 급강하에 따른 선로전환기 히팅장치 가동 기준 및 외부 출입구·계단 미끄럼 방지 조치 강화 공지입니다.",
+        content: `1. 개정 배경\n동절기 한파 및 강설에 대비하여 열차 정시운행 확보 및 여객 전도사고를 사전에 예방하기 위함입니다.\n\n2. 주요 개정 내용\n① 선로전환기 히팅장치 가동 기준 강화: 외기 온도 2℃ 이하 예보 시 사전 예열 가동 및 분전반 전류 상태 수시 점검\n② 외부 출입구 및 승강장 결빙 방지: 강설·결빙 예보 시 출입구 계단 염화칼슘 사전 살포 및 미끄럼 방지 매트 상태 점검 (1일 2회 이상 순회 점검)\n③ 한파 특보 발효 시 심야 시간대 화장실 및 기계실 동파 방지 보온 상태 확인 철저`,
+        author: "왕십리관리역장"
+      }
+    ];
+
+    const CATEGORIES = [
+      { id: "전체", label: "전체", icon: "book-open" },
+      { id: "운전·로컬취급", label: "운전·로컬취급", icon: "train" },
+      { id: "안전·소방(PSD/시설)", label: "안전·소방(PSD)", icon: "alert-triangle" },
+      { id: "여객·역무", label: "여객·역무", icon: "users" },
+      { id: "복무·근무교대", label: "복무·근무교대", icon: "clock" },
+      { id: "신규·개정공지", label: "신규·개정공지", icon: "bell" }
+    ];
+
+    const VALID_PASSCODES = ["korail", "KORAIL", "1004", "wangsimni", "왕십리"];
+
+    // ------------------------------------------------------------------------
+    // 3. 애플리케이션 전역 상태 (In-Memory + Firestore 실시간 동기화)
+    // ------------------------------------------------------------------------
+    const state = {
+      user: null,
+      isVerified: false,
+      rules: [],
+      selectedCategory: "전체",
+      searchQuery: "",
+      selectedRuleId: null,
+      editingRuleId: null,
+      deleteTargetId: null,
+      isLargeText: false,
+      isSeeding: false,
+      iconPngUri: "",
+      iconSvgUri: ""
+    };
+
+    // ------------------------------------------------------------------------
+    // 4. '내규' 전용 고해상도 아이콘(SVG + 512x512 PNG Base64) 및 동적 Manifest 생성
+    // ------------------------------------------------------------------------
+    function setupNaegyuAppIconAndManifest() {
+      const svgString = `
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" width="512" height="512">
+          <defs>
+            <linearGradient id="naegyuBg" x1="0%" y1="0%" x2="100%" y2="100%">
+              <stop offset="0%" stop-color="#003B75"/>
+              <stop offset="55%" stop-color="#0054A6"/>
+              <stop offset="100%" stop-color="#00A0E9"/>
+            </linearGradient>
+            <filter id="txtShadow" x="-15%" y="-15%" width="130%" height="130%">
+              <feDropShadow dx="0" dy="6" stdDeviation="6" flood-color="#001F3F" flood-opacity="0.45"/>
+            </filter>
+          </defs>
+          <rect width="512" height="512" rx="112" fill="url(#naegyuBg)"/>
+          <rect x="22" y="22" width="468" height="468" rx="94" fill="none" stroke="rgba(255,255,255,0.28)" stroke-width="6"/>
+          <rect x="132" y="76" width="248" height="54" rx="27" fill="rgba(255,255,255,0.16)"/>
+          <text x="256" y="112" font-family="'Noto Sans KR', 'Malgun Gothic', 'Apple SD Gothic Neo', sans-serif" font-size="30" font-weight="800" fill="#E0F7FA" text-anchor="middle" letter-spacing="4">왕십리관리역</text>
+          <text x="256" y="318" font-family="'Noto Sans KR', 'Malgun Gothic', 'Apple SD Gothic Neo', sans-serif" font-size="188" font-weight="900" fill="#FFFFFF" text-anchor="middle" letter-spacing="12" filter="url(#txtShadow)">내규</text>
+          <line x1="116" y1="378" x2="396" y2="378" stroke="rgba(255,255,255,0.35)" stroke-width="4" stroke-linecap="round"/>
+          <text x="256" y="430" font-family="'Noto Sans KR', 'Malgun Gothic', 'Apple SD Gothic Neo', sans-serif" font-size="32" font-weight="700" fill="#B3E5FC" text-anchor="middle" letter-spacing="3">사규똑똑이 · KORAIL</text>
+        </svg>
+      `.trim();
+
+      const encodedSvg = encodeURIComponent(svgString).replace(/'/g, "%27").replace(/"/g, "%22");
+      const svgDataUri = `data:image/svg+xml;charset=utf-8,${encodedSvg}`;
+      let pngDataUri = svgDataUri;
+
+      try {
+        const canvas = document.createElement("canvas");
+        canvas.width = 512;
+        canvas.height = 512;
+        const ctx = canvas.getContext("2d");
+        if (ctx) {
+          const grad = ctx.createLinearGradient(0, 0, 512, 512);
+          grad.addColorStop(0, "#003B75");
+          grad.addColorStop(0.55, "#0054A6");
+          grad.addColorStop(1, "#00A0E9");
+          ctx.fillStyle = grad;
+          ctx.beginPath();
+          if (ctx.roundRect) {
+            ctx.roundRect(0, 0, 512, 512, 112);
+          } else {
+            ctx.rect(0, 0, 512, 512);
+          }
+          ctx.fill();
+
+          ctx.strokeStyle = "rgba(255,255,255,0.28)";
+          ctx.lineWidth = 6;
+          ctx.beginPath();
+          if (ctx.roundRect) {
+            ctx.roundRect(22, 22, 468, 468, 94);
+          } else {
+            ctx.rect(22, 22, 468, 468);
+          }
+          ctx.stroke();
+
+          ctx.fillStyle = "rgba(255,255,255,0.16)";
+          ctx.beginPath();
+          if (ctx.roundRect) {
+            ctx.roundRect(132, 76, 248, 54, 27);
+          } else {
+            ctx.rect(132, 76, 248, 54);
+          }
+          ctx.fill();
+
+          ctx.fillStyle = "#E0F7FA";
+          ctx.font = "800 30px 'Noto Sans KR', 'Malgun Gothic', sans-serif";
+          ctx.textAlign = "center";
+          ctx.textBaseline = "middle";
+          ctx.fillText("왕십리관리역", 256, 104);
+
+          ctx.save();
+          ctx.shadowColor = "rgba(0, 31, 63, 0.45)";
+          ctx.shadowBlur = 14;
+          ctx.shadowOffsetY = 6;
+          ctx.fillStyle = "#FFFFFF";
+          ctx.font = "900 188px 'Noto Sans KR', 'Malgun Gothic', sans-serif";
+          ctx.fillText("내규", 256, 255);
+          ctx.restore();
+
+          ctx.strokeStyle = "rgba(255,255,255,0.35)";
+          ctx.lineWidth = 4;
+          ctx.beginPath();
+          ctx.moveTo(116, 378);
+          ctx.lineTo(396, 378);
+          ctx.stroke();
+
+          ctx.fillStyle = "#B3E5FC";
+          ctx.font = "700 32px 'Noto Sans KR', 'Malgun Gothic', sans-serif";
+          ctx.fillText("사규똑똑이 · KORAIL", 256, 422);
+
+          pngDataUri = canvas.toDataURL("image/png");
+        }
+      } catch (e) {
+        console.warn("Canvas PNG icon fallback:", e);
+      }
+
+      state.iconSvgUri = svgDataUri;
+      state.iconPngUri = pngDataUri;
+
+      const primaryIcon = pngDataUri || svgDataUri;
+
+      // Favicon & Apple Touch Icon 업데이트
+      const faviconEl = document.getElementById("favicon-link");
+      if (faviconEl) faviconEl.href = primaryIcon;
+
+      const defaultAppleIcon = document.getElementById("apple-icon-default");
+      if (defaultAppleIcon) defaultAppleIcon.href = primaryIcon;
+
+      ["152x152", "167x167", "180x180"].forEach((sz) => {
+        const link = document.createElement("link");
+        link.rel = "apple-touch-icon";
+        link.sizes = sz;
+        link.href = primaryIcon;
+        document.head.appendChild(link);
+      });
+
+      const previewImg = document.getElementById("icon-preview-img");
+      if (previewImg) previewImg.src = primaryIcon;
+
+      // 동적 Web App Manifest 생성 (Chrome / 삼성 인터넷 홈 화면 추가용)
+      try {
+        const manifestObj = {
+          name: "왕십리역 사규똑똑이 (내규)",
+          short_name: "내규",
+          description: "코레일 왕십리관리역 직원 전용 근무·운전 규정 공유망",
+          start_url: window.location.href,
+          display: "standalone",
+          background_color: "#0054A6",
+          theme_color: "#0054A6",
+          icons: [
+            {
+              src: primaryIcon,
+              sizes: "512x512",
+              type: primaryIcon.startsWith("data:image/png") ? "image/png" : "image/svg+xml",
+              purpose: "any maskable"
+            },
+            {
+              src: svgDataUri,
+              sizes: "192x192 512x512",
+              type: "image/svg+xml",
+              purpose: "any"
+            }
+          ]
+        };
+        const blob = new Blob([JSON.stringify(manifestObj)], { type: "application/manifest+json" });
+        const manifestUrl = URL.createObjectURL(blob);
+        const manifestLink = document.createElement("link");
+        manifestLink.rel = "manifest";
+        manifestLink.href = manifestUrl;
+        document.head.appendChild(manifestLink);
+      } catch (err) {
+        console.warn("Manifest generation skipped:", err);
+      }
+    }
+
+    // ------------------------------------------------------------------------
+    // 5. 유틸리티 함수 (XSS 방지, 하이라이트, 토스트 알림)
+    // ------------------------------------------------------------------------
+    function escapeHtml(str) {
+      if (!str) return "";
+      return String(str)
+        .replace(/&/g, "&amp;")
+        .replace(/</g, "&lt;")
+        .replace(/>/g, "&gt;")
+        .replace(/"/g, "&quot;")
+        .replace(/'/g, "&#039;");
+    }
+
+    function highlightHtml(text, query) {
+      const safeText = escapeHtml(text);
+      if (!query || !query.trim()) return safeText;
+      const escapedQuery = escapeHtml(query.trim()).replace(/[.*+?^${}()|[\]\\]/g, "\\$&");
+      const regex = new RegExp(`(${escapedQuery})`, "gi");
+      return safeText.replace(regex, '<mark class="bg-amber-200 text-slate-900 font-extrabold px-0.5 rounded">$1</mark>');
+    }
+
+    let toastTimer = null;
+    function showToast(msg) {
+      const container = document.getElementById("toast-container");
+      const msgEl = document.getElementById("toast-message");
+      if (!container || !msgEl) return;
+      msgEl.textContent = msg;
+      container.classList.remove("hidden");
+      if (window.lucide) window.lucide.createIcons();
+      clearTimeout(toastTimer);
+      toastTimer = setTimeout(() => {
+        container.classList.add("hidden");
+      }, 3200);
+    }
+
+    function sortRules(list) {
+      const impWeight = { "필독": 3, "개정": 2, "일반": 1 };
+      return [...list].sort((a, b) => {
+        const wA = impWeight[a.importance] || 0;
+        const wB = impWeight[b.importance] || 0;
+        if (wA !== wB) return wB - wA;
+        return (b.effectiveDate || "").localeCompare(a.effectiveDate || "");
+      });
+    }
+
+    function getImportanceBadgeClass(importance) {
+      if (importance === "필독") return "bg-rose-600 text-white border-rose-700";
+      if (importance === "개정") return "bg-[#00A0E9] text-white border-[#0086C3]";
+      return "bg-slate-100 text-slate-700 border-slate-200";
+    }
+
+    // ------------------------------------------------------------------------
+    // 6. UI 렌더링 함수
+    // ------------------------------------------------------------------------
+    function renderCategories() {
+      const container = document.getElementById("category-tabs");
+      if (!container) return;
+      container.innerHTML = CATEGORIES.map((cat) => {
+        const isActive = state.selectedCategory === cat.id;
+        return `
+          <button
+            type="button"
+            onclick="selectCategory('${cat.id}')"
+            class="shrink-0 flex items-center gap-1.5 px-3 py-1.5 rounded-full text-xs font-extrabold transition-all ${
+              isActive
+                ? "bg-white text-[#0054A6] shadow-sm"
+                : "text-sky-100 hover:bg-white/10"
+            }"
+          >
+            <i data-lucide="${cat.icon}" class="w-3.5 h-3.5"></i>
+            <span>${escapeHtml(cat.label)}</span>
+          </button>
+        `;
+      }).join("");
+      if (window.lucide) window.lucide.createIcons();
+    }
+
+    function renderDashboard() {
+      const q = state.searchQuery.trim().toLowerCase();
+
+      // 1) 필독 및 개정 핵심 안내 배너
+      const featuredSection = document.getElementById("featured-section");
+      const featuredGrid = document.getElementById("featured-grid");
+      const featuredItems = state.rules
+        .filter((r) => r.importance === "필독" || r.importance === "개정")
+        .slice(0, 4);
+
+      if (!q && featuredItems.length > 0) {
+        featuredSection.classList.remove("hidden");
+        featuredGrid.innerHTML = featuredItems
+          .map(
+            (item) => `
+            <button
+              type="button"
+              onclick="openDetailModal('${item.id}')"
+              class="text-left bg-gradient-to-br from-white to-sky-50/80 hover:to-sky-100/80 border border-sky-200/90 rounded-2xl p-3.5 shadow-xs transition-all active:scale-[0.99] flex flex-col justify-between"
+            >
+              <div>
+                <div class="flex items-center justify-between gap-2 mb-1.5">
+                  <span class="px-2 py-0.5 rounded-md text-[10px] font-extrabold border ${getImportanceBadgeClass(item.importance)}">
+                    ${escapeHtml(item.importance)}
+                  </span>
+                  <span class="text-[11px] text-slate-400 font-semibold">${escapeHtml(item.effectiveDate)}</span>
+                </div>
+                <h3 class="text-sm font-extrabold text-slate-900 line-clamp-2 leading-snug">
+                  ${escapeHtml(item.title)}
+                </h3>
+              </div>
+              <div class="mt-2.5 flex items-center justify-between text-[11px] text-[#0054A6] font-bold">
+                <span>${escapeHtml(item.category)}</span>
+                <span class="flex items-center">자세히 <i data-lucide="chevron-right" class="w-3.5 h-3.5"></i></span>
+              </div>
+            </button>
+          `
+          )
+          .join("");
+      } else {
+        featuredSection.classList.add("hidden");
+      }
+
+      // 2) 카테고리 및 키워드 필터링
+      const filtered = state.rules.filter((rule) => {
+        const matchCat = state.selectedCategory === "전체" || rule.category === state.selectedCategory;
+        if (!q) return matchCat;
+        const inTitle = (rule.title || "").toLowerCase().includes(q);
+        const inSummary = (rule.summary || "").toLowerCase().includes(q);
+        const inContent = (rule.content || "").toLowerCase().includes(q);
+        const inTags = Array.isArray(rule.tags)
+          ? rule.tags.some((t) => t.toLowerCase().includes(q))
+          : false;
+        return matchCat && (inTitle || inSummary || inContent || inTags);
+      });
+
+      document.getElementById("list-heading").textContent =
+        state.selectedCategory === "전체" ? "전체 내규·사규 목록" : state.selectedCategory;
+      document.getElementById("rules-count-badge").textContent = `${filtered.length}건`;
+
+      const resetLink = document.getElementById("reset-search-link");
+      const clearBtn = document.getElementById("clear-search-btn");
+      if (state.searchQuery.trim()) {
+        resetLink.classList.remove("hidden");
+        clearBtn.classList.remove("hidden");
+      } else {
+        resetLink.classList.add("hidden");
+        clearBtn.classList.add("hidden");
+      }
+
+      const listContainer = document.getElementById("rules-list-container");
+      if (filtered.length === 0) {
+        listContainer.innerHTML = `
+          <div class="bg-white rounded-2xl p-10 text-center border border-slate-200 shadow-xs">
+            <i data-lucide="file-text" class="w-10 h-10 text-slate-300 mx-auto mb-2.5"></i>
+            <p class="text-base font-extrabold text-slate-700">일치하는 규정이 없습니다.</p>
+            <p class="text-xs text-slate-500 mt-1">다른 키워드로 검색하거나 우측 하단 '새 규정 등록' 버튼으로 직접 등록해보세요.</p>
+          </div>
+        `;
+      } else {
+        listContainer.innerHTML = filtered
+          .map((rule) => {
+            const tagsHtml = Array.isArray(rule.tags)
+              ? rule.tags
+                  .slice(0, 4)
+                  .map(
+                    (tag) => `
+                    <span class="inline-flex items-center text-[11px] font-bold text-[#0054A6] bg-sky-50 px-2 py-0.5 rounded-md">
+                      #${highlightHtml(tag, state.searchQuery)}
+                    </span>
+                  `
+                  )
+                  .join("")
+              : "";
+
+            return `
+              <article
+                onclick="openDetailModal('${rule.id}')"
+                class="bg-white hover:bg-slate-50/90 active:bg-sky-50/50 rounded-2xl p-4 border border-slate-200/90 shadow-xs hover:shadow transition-all cursor-pointer"
+              >
+                <div class="flex flex-wrap items-center justify-between gap-2 mb-2">
+                  <div class="flex items-center gap-1.5">
+                    <span class="px-2 py-0.5 rounded-md text-[11px] font-extrabold border ${getImportanceBadgeClass(rule.importance)}">
+                      ${escapeHtml(rule.importance)}
+                    </span>
+                    <span class="px-2 py-0.5 rounded-md bg-slate-100 text-slate-700 text-[11px] font-extrabold">
+                      ${escapeHtml(rule.category)}
+                    </span>
+                  </div>
+                  <span class="text-xs text-slate-400 flex items-center gap-1 font-medium">
+                    <i data-lucide="calendar" class="w-3 h-3"></i>
+                    ${escapeHtml(rule.effectiveDate)}
+                  </span>
+                </div>
+
+                <h3 class="text-base font-black text-slate-900 leading-snug mb-1.5">
+                  ${highlightHtml(rule.title, state.searchQuery)}
+                </h3>
+
+                <p class="text-xs sm:text-sm text-slate-600 line-clamp-2 leading-relaxed mb-3">
+                  ${highlightHtml(rule.summary, state.searchQuery)}
+                </p>
+
+                <div class="flex items-center justify-between gap-2 pt-2.5 border-t border-slate-100">
+                  <div class="flex flex-wrap items-center gap-1.5">
+                    ${tagsHtml}
+                  </div>
+                  <span class="text-[11px] text-slate-400 font-semibold shrink-0">
+                    ${escapeHtml(rule.author || "왕십리역")}
+                  </span>
+                </div>
+              </article>
+            `;
+          })
+          .join("");
+      }
+
+      if (window.lucide) window.lucide.createIcons();
+    }
+
+    // ------------------------------------------------------------------------
+    // 7. Firebase Auth & Firestore 실시간 구독 (RULE 1, 2, 3 준수)
+    // ------------------------------------------------------------------------
+    async function initDataSync() {
+      if (!isFirebaseConfigured || !auth || !db) {
+        // Firebase 설정이 비어있는 경우 기본 실무 내규 데이터로 즉시 동작
+        state.rules = sortRules(INITIAL_SAMPLES);
+        const badge = document.getElementById("sync-status-badge");
+        if (badge) {
+          badge.innerHTML = `<span class="w-1.5 h-1.5 rounded-full bg-sky-300"></span>기본모드`;
+        }
+        renderDashboard();
+        return;
+      }
+
+      try {
+        if (typeof __initial_auth_token !== "undefined" && __initial_auth_token) {
+          await signInWithCustomToken(auth, __initial_auth_token);
+        } else {
+          await signInAnonymously(auth);
+        }
+      } catch (err) {
+        console.error("Auth error:", err);
+        state.rules = sortRules(INITIAL_SAMPLES);
+        renderDashboard();
+        return;
+      }
+
+      onAuthStateChanged(auth, (user) => {
+        state.user = user;
+        if (!user) return;
+
+        const rulesColRef = collection(db, "artifacts", appId, "public", "data", "station_rules");
+        onSnapshot(
+          rulesColRef,
+          async (snapshot) => {
+            if (snapshot.empty && !state.isSeeding) {
+              state.isSeeding = true;
+              try {
+                for (const sample of INITIAL_SAMPLES) {
+                  const { id, ...dataWithoutId } = sample;
+                  await addDoc(rulesColRef, {
+                    ...dataWithoutId,
+                    createdAt: Date.now()
+                  });
+                }
+              } catch (seedErr) {
+                console.error("Seed error:", seedErr);
+              } finally {
+                state.isSeeding = false;
+              }
+              return;
+            }
+
+            const fetched = snapshot.docs.map((d) => ({
+              id: d.id,
+              ...d.data()
+            }));
+            state.rules = sortRules(fetched);
+            renderDashboard();
+
+            if (state.selectedRuleId) {
+              const updated = state.rules.find((r) => r.id === state.selectedRuleId);
+              if (updated) {
+                populateDetailModal(updated);
+              } else {
+                window.closeDetailModal();
+              }
+            }
+          },
+          (error) => {
+            console.error("Firestore snapshot error:", error);
+            if (state.rules.length === 0) {
+              state.rules = sortRules(INITIAL_SAMPLES);
+              renderDashboard();
+            }
+          }
+        );
+      });
+    }
+
+    // ------------------------------------------------------------------------
+    // 8. 인터랙션 핸들러 (전역 window 바인딩)
+    // ------------------------------------------------------------------------
+    document.getElementById("auth-form").addEventListener("submit", (e) => {
+      e.preventDefault();
+      const input = document.getElementById("passcode-input");
+      const errorEl = document.getElementById("auth-error");
+      const val = input.value.trim();
+
+      if (VALID_PASSCODES.includes(val)) {
+        state.isVerified = true;
+        errorEl.classList.add("hidden");
+        document.getElementById("auth-screen").classList.add("hidden");
+        document.getElementById("main-dashboard").classList.remove("hidden");
+        renderCategories();
+        renderDashboard();
+        showToast("왕십리관리역 직원 인증이 완료되었습니다.");
+      } else {
+        errorEl.classList.remove("hidden");
+        if (window.lucide) window.lucide.createIcons();
+      }
+    });
+
+    document.getElementById("passcode-input").addEventListener("input", () => {
+      document.getElementById("auth-error").classList.add("hidden");
+    });
+
+    document.getElementById("search-input").addEventListener("input", (e) => {
+      state.searchQuery = e.target.value;
+      renderDashboard();
+    });
+
+    window.clearSearch = function () {
+      state.searchQuery = "";
+      document.getElementById("search-input").value = "";
+      renderDashboard();
+    };
+
+    window.selectCategory = function (catId) {
+      state.selectedCategory = catId;
+      renderCategories();
+      renderDashboard();
+    };
+
+    window.handleLogout = function () {
+      state.isVerified = false;
+      document.getElementById("passcode-input").value = "";
+      document.getElementById("main-dashboard").classList.add("hidden");
+      document.getElementById("auth-screen").classList.remove("hidden");
+    };
+
+    window.handleShareLink = async function () {
+      const shareUrl = window.location.href;
+      const shareText = `[코레일 왕십리관리역] 직원 전용 근무·운전 규정 공유앱 '왕십리역 사규똑똑이'\n접속 링크: ${shareUrl}\n직원 인증코드: korail (또는 1004)`;
+
+      if (navigator.share) {
+        try {
+          await navigator.share({
+            title: "왕십리역 사규똑똑이",
+            text: shareText,
+            url: shareUrl
+          });
+          return;
+        } catch (err) {
+          // 공유 취소 시 클립보드 복사로 폴백
+        }
+      }
+
+      try {
+        const tempTextarea = document.createElement("textarea");
+        tempTextarea.value = shareText;
+        tempTextarea.style.position = "fixed";
+        tempTextarea.style.opacity = "0";
+        document.body.appendChild(tempTextarea);
+        tempTextarea.select();
+        document.execCommand("copy");
+        document.body.removeChild(tempTextarea);
+        showToast("직원 공유용 안내 문구와 링크가 복사되었습니다!");
+      } catch (err) {
+        showToast("링크 복사에 실패했습니다.");
+      }
+    };
+
+    // 상세 보기 모달
+    function populateDetailModal(rule) {
+      const impEl = document.getElementById("detail-importance");
+      impEl.textContent = rule.importance;
+      impEl.className = `px-2 py-0.5 rounded-md text-xs font-extrabold ${
+        rule.importance === "필독" ? "bg-rose-500 text-white" : "bg-[#00A0E9] text-white"
+      }`;
+
+      document.getElementById("detail-category").textContent = rule.category;
+      document.getElementById("detail-title").textContent = rule.title;
+      document.getElementById("detail-date").textContent = `시행/개정일: ${rule.effectiveDate}`;
+      document.getElementById("detail-author").textContent = `작성: ${rule.author || "왕십리역"}`;
+      document.getElementById("detail-summary").textContent = rule.summary;
+      document.getElementById("detail-content").textContent = rule.content;
+
+      const tagsEl = document.getElementById("detail-tags");
+      if (Array.isArray(rule.tags) && rule.tags.length > 0) {
+        tagsEl.innerHTML =
+          `<i data-lucide="tag" class="w-3.5 h-3.5 text-slate-400 mr-1"></i>` +
+          rule.tags
+            .map((t) => `<span class="px-2.5 py-1 rounded-lg bg-slate-100 text-slate-700 text-xs font-extrabold">#${escapeHtml(t)}</span>`)
+            .join("");
+      } else {
+        tagsEl.innerHTML = "";
+      }
+
+      applyLargeTextStyle();
+    }
+
+    function applyLargeTextStyle() {
+      const titleEl = document.getElementById("detail-title");
+      const summaryEl = document.getElementById("detail-summary");
+      const contentEl = document.getElementById("detail-content");
+      const btn = document.getElementById("toggle-large-text-btn");
+      const label = document.getElementById("large-text-label");
+
+      if (state.isLargeText) {
+        titleEl.className = "text-xl sm:text-2xl font-black text-slate-900 leading-snug";
+        summaryEl.className = "text-base sm:text-lg font-bold text-slate-800 leading-relaxed";
+        contentEl.className = "text-lg sm:text-xl leading-loose text-slate-800 whitespace-pre-line bg-slate-50 p-4 rounded-2xl border border-slate-200/80";
+        btn.className = "flex items-center gap-1 px-2.5 py-1.5 rounded-xl text-xs font-extrabold bg-amber-400 text-slate-900 transition-colors";
+        label.textContent = "보통글씨";
+      } else {
+        titleEl.className = "text-lg sm:text-xl font-black text-slate-900 leading-snug";
+        summaryEl.className = "text-sm font-bold text-slate-800 leading-relaxed";
+        contentEl.className = "text-sm sm:text-base leading-relaxed text-slate-800 whitespace-pre-line bg-slate-50 p-4 rounded-2xl border border-slate-200/80";
+        btn.className = "flex items-center gap-1 px-2.5 py-1.5 rounded-xl text-xs font-extrabold bg-white/15 hover:bg-white/25 text-white transition-colors";
+        label.textContent = "큰글씨";
+      }
+    }
+
+    window.toggleLargeText = function () {
+      state.isLargeText = !state.isLargeText;
+      applyLargeTextStyle();
+    };
+
+    window.openDetailModal = function (ruleId) {
+      const rule = state.rules.find((r) => r.id === ruleId);
+      if (!rule) return;
+      state.selectedRuleId = ruleId;
+      populateDetailModal(rule);
+      document.getElementById("detail-modal").classList.remove("hidden");
+      if (window.lucide) window.lucide.createIcons();
+    };
+
+    window.closeDetailModal = function () {
+      state.selectedRuleId = null;
+      document.getElementById("detail-modal").classList.add("hidden");
+    };
+
+    // 등록/수정 폼 모달
+    window.openCreateModal = function () {
+      state.editingRuleId = null;
+      document.getElementById("form-modal-title").innerHTML = `<i data-lucide="edit-3" class="w-5 h-5 text-[#00A0E9]"></i><span>새 규정 / 개정 내규 등록</span>`;
+      document.getElementById("form-submit-btn").textContent = "전체 직원에게 등록·공유";
+
+      document.getElementById("form-category").value =
+        state.selectedCategory !== "전체" ? state.selectedCategory : "운전·로컬취급";
+      document.getElementById("form-importance").value = "일반";
+      document.getElementById("form-title").value = "";
+      document.getElementById("form-date").value = new Date().toISOString().split("T")[0];
+      document.getElementById("form-author").value = "";
+      document.getElementById("form-summary").value = "";
+      document.getElementById("form-content").value = "";
+      document.getElementById("form-tags").value = "";
+
+      document.getElementById("form-modal").classList.remove("hidden");
+      if (window.lucide) window.lucide.createIcons();
+    };
+
+    window.openEditFromDetail = function () {
+      const rule = state.rules.find((r) => r.id === state.selectedRuleId);
+      if (!rule) return;
+      window.closeDetailModal();
+
+      state.editingRuleId = rule.id;
+      document.getElementById("form-modal-title").innerHTML = `<i data-lucide="edit-3" class="w-5 h-5 text-[#00A0E9]"></i><span>규정 내용 수정 및 업데이트</span>`;
+      document.getElementById("form-submit-btn").textContent = "수정 내용 즉시 반영";
+
+      document.getElementById("form-category").value = rule.category || "운전·로컬취급";
+      document.getElementById("form-importance").value = rule.importance || "일반";
+      document.getElementById("form-title").value = rule.title || "";
+      document.getElementById("form-date").value = rule.effectiveDate || new Date().toISOString().split("T")[0];
+      document.getElementById("form-author").value = rule.author || "";
+      document.getElementById("form-summary").value = rule.summary || "";
+      document.getElementById("form-content").value = rule.content || "";
+      document.getElementById("form-tags").value = Array.isArray(rule.tags) ? rule.tags.join(", ") : "";
+
+      document.getElementById("form-modal").classList.remove("hidden");
+      if (window.lucide) window.lucide.createIcons();
+    };
+
+    window.closeFormModal = function () {
+      state.editingRuleId = null;
+      document.getElementById("form-modal").classList.add("hidden");
+    };
+
+    document.getElementById("rule-form").addEventListener("submit", async (e) => {
+      e.preventDefault();
+      const title = document.getElementById("form-title").value.trim();
+      const content = document.getElementById("form-content").value.trim();
+      if (!title || !content) {
+        showToast("규정 제목과 상세 본문을 입력해주세요.");
+        return;
+      }
+
+      const category = document.getElementById("form-category").value;
+      const importance = document.getElementById("form-importance").value;
+      const effectiveDate = document.getElementById("form-date").value;
+      const author = document.getElementById("form-author").value.trim() || "왕십리역 직원";
+      const summaryInput = document.getElementById("form-summary").value.trim();
+      const tagsRaw = document.getElementById("form-tags").value;
+
+      const parsedTags = tagsRaw
+        .split(",")
+        .map((t) => t.trim().replace(/^#/, ""))
+        .filter(Boolean);
+
+      const payload = {
+        category,
+        title,
+        effectiveDate,
+        importance,
+        tags: parsedTags.length > 0 ? parsedTags : [category.split("·")[0]],
+        summary: summaryInput || content.slice(0, 80) + (content.length > 80 ? "..." : ""),
+        content,
+        author,
+        updatedAt: Date.now()
+      };
+
+      try {
+        if (isFirebaseConfigured && db && state.user) {
+          if (state.editingRuleId) {
+            const docRef = doc(db, "artifacts", appId, "public", "data", "station_rules", state.editingRuleId);
+            await updateDoc(docRef, payload);
+            showToast("규정이 수정되어 모든 직원에게 즉시 반영되었습니다.");
+          } else {
+            const colRef = collection(db, "artifacts", appId, "public", "data", "station_rules");
+            await addDoc(colRef, { ...payload, createdAt: Date.now() });
+            showToast("새 규정이 등록되어 실시간으로 공유되었습니다.");
+          }
+        } else {
+          // 기본 모드(Firebase 미연결 시) 메모리 내 즉시 반영
+          if (state.editingRuleId) {
+            state.rules = sortRules(
+              state.rules.map((r) => (r.id === state.editingRuleId ? { ...r, ...payload } : r))
+            );
+            showToast("규정이 수정되었습니다.");
+          } else {
+            state.rules = sortRules([{ id: "local-" + Date.now(), ...payload }, ...state.rules]);
+            showToast("새 규정이 등록되었습니다.");
+          }
+          renderDashboard();
+        }
+        window.closeFormModal();
+      } catch (err) {
+        console.error("Save rule error:", err);
+        showToast("저장 중 오류가 발생했습니다. 다시 시도해주세요.");
+      }
+    });
+
+    // 삭제 확인 모달
+    window.openDeleteFromDetail = function () {
+      if (!state.selectedRuleId) return;
+      state.deleteTargetId = state.selectedRuleId;
+      document.getElementById("delete-modal").classList.remove("hidden");
+      if (window.lucide) window.lucide.createIcons();
+    };
+
+    window.closeDeleteModal = function () {
+      state.deleteTargetId = null;
+      document.getElementById("delete-modal").classList.add("hidden");
+    };
+
+    window.confirmDeleteRule = async function () {
+      const targetId = state.deleteTargetId;
+      if (!targetId) return;
+
+      try {
+        if (isFirebaseConfigured && db && state.user) {
+          const docRef = doc(db, "artifacts", appId, "public", "data", "station_rules", targetId);
+          await deleteDoc(docRef);
+        } else {
+          state.rules = state.rules.filter((r) => r.id !== targetId);
+          renderDashboard();
+        }
+        window.closeDeleteModal();
+        window.closeDetailModal();
+        showToast("해당 규정이 삭제되었습니다.");
+      } catch (err) {
+        console.error("Delete rule error:", err);
+        showToast("삭제 중 오류가 발생했습니다.");
+      }
+    };
+
+    // 홈 화면 '내규' 아이콘 설치 안내 모달
+    window.openShortcutModal = function () {
+      document.getElementById("shortcut-modal").classList.remove("hidden");
+      if (window.lucide) window.lucide.createIcons();
+    };
+
+    window.closeShortcutModal = function () {
+      document.getElementById("shortcut-modal").classList.add("hidden");
+    };
+
+    window.switchShortcutTab = function (platform) {
+      const tabAndroid = document.getElementById("tab-android");
+      const tabIos = document.getElementById("tab-ios");
+      const guideAndroid = document.getElementById("guide-android");
+      const guideIos = document.getElementById("guide-ios");
+
+      if (platform === "android") {
+        tabAndroid.className = "py-2 rounded-lg text-xs font-extrabold bg-white text-[#0054A6] shadow-xs transition-all";
+        tabIos.className = "py-2 rounded-lg text-xs font-extrabold text-slate-600 transition-all";
+        guideAndroid.classList.remove("hidden");
+        guideIos.classList.add("hidden");
+      } else {
+        tabIos.className = "py-2 rounded-lg text-xs font-extrabold bg-white text-[#0054A6] shadow-xs transition-all";
+        tabAndroid.className = "py-2 rounded-lg text-xs font-extrabold text-slate-600 transition-all";
+        guideIos.classList.remove("hidden");
+        guideAndroid.classList.add("hidden");
+      }
+    };
+
+    window.downloadNaegyuIcon = function () {
+      const url = state.iconPngUri || state.iconSvgUri;
+      if (!url) return;
+      const a = document.createElement("a");
+      a.href = url;
+      a.download = url.startsWith("data:image/png") ? "왕십리역_내규_아이콘.png" : "왕십리역_내규_아이콘.svg";
+      document.body.appendChild(a);
+      a.click();
+      document.body.removeChild(a);
+      showToast("내규 아이콘 이미지가 저장되었습니다.");
+    };
+
+    // ------------------------------------------------------------------------
+    // 9. 초기 실행
+    // ------------------------------------------------------------------------
+    window.addEventListener("DOMContentLoaded", () => {
+      setupNaegyuAppIconAndManifest();
+      if (window.lucide) window.lucide.createIcons();
+      initDataSync();
+    });
+  </script>
+</body>
+</html>
